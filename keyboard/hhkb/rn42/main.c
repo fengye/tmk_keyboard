@@ -14,6 +14,7 @@
 #include "wait.h"
 #include "suart.h"
 #include "suspend.h"
+#include "matrix.h"
 
 static int8_t sendchar_func(uint8_t c)
 {
