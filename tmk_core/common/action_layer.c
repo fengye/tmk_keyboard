@@ -111,6 +111,16 @@ void layer_xor(uint32_t state)
     layer_state_set(layer_state ^ state);
 }
 
+uint32_t layer_test(uint32_t state)
+{
+    return layer_state & state;
+}
+
+uint32_t layer_state_make(uint8_t layer)
+{
+    return 1UL << layer;
+}
+
 void layer_debug(void)
 {
     dprintf("%08lX(%u)", layer_state, biton32(layer_state));

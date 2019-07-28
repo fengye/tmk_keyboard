@@ -52,6 +52,9 @@ void layer_invert(uint8_t layer);
 void layer_or(uint32_t state);
 void layer_and(uint32_t state);
 void layer_xor(uint32_t state);
+/* test */
+uint32_t layer_state_make(uint8_t layer);
+uint32_t layer_test(uint32_t state);
 #endif
 
 

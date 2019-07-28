@@ -15,6 +15,8 @@ enum macro_id {
 enum function_id {
     KEY_FN3_LSHIFT,
     KEY_FN4_RSHIFT,
+    KEY_FN34_LNSTART,
+    KEY_FN34_LNEND,
 };
 
 
@@ -40,8 +42,10 @@ enum function_id {
 // #define AC_L2(KEY)       ACTION_MODS_KEY(MOD_LCTL, KC_##KEY)
 // #define AC_L2_LNST       ACTION_MODS_KEY(MOD_LCTL, KC_A)
 // #define AC_L2_LNED       ACTION_MODS_KEY(MOD_LCTL, KC_E)
-#define AC_LNST          ACTION_MODS_KEY(MOD_LCTL, KC_A)
-#define AC_LNED          ACTION_MODS_KEY(MOD_LCTL, KC_E)
+// #define AC_LNST          ACTION_MODS_KEY(MOD_LCTL, KC_A)
+// #define AC_LNED          ACTION_MODS_KEY(MOD_LCTL, KC_E)
+#define AC_LNST          ACTION_FUNCTION(KEY_FN34_LNSTART)
+#define AC_LNED          ACTION_FUNCTION(KEY_FN34_LNEND)
 
 // L3, for remapped L Shift+X keycodes
 #define AC_L3(KEY)       ACTION_MODS_KEY(MOD_LSFT, KC_##KEY)
@@ -233,6 +237,83 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
             {
                 unregister_code(KC_RSHIFT);
                 layer_off(4);
+            }
+        }
+        break;
+        case KEY_FN34_LNSTART:
+        {
+            uint32_t layer_win_on = layer_state_make(5);
+            if (layer_test(layer_win_on))
+            {
+                // Windows use HOME/END instead of ctrl+a/ctrl+e
+                if (record->event.pressed)
+                {
+                    register_code(KC_HOME);
+                }
+                else
+                {
+                    unregister_code(KC_HOME);
+                }
+            }
+            else {
+                uint8_t saved_mods = get_mods();
+                if (record->event.pressed)
+                {
+                    clear_mods();
+                    send_keyboard_report();
+                    // down mod
+                    add_weak_mods(MOD_BIT(KC_LCTL));
+                    send_keyboard_report();
+                    // down key
+                    register_code(KC_A);
+                    // up key
+                    unregister_code(KC_A);
+                    // up mod
+                    del_weak_mods(MOD_BIT(KC_LCTL));
+                    send_keyboard_report();
+
+                    set_mods(saved_mods);
+                    send_keyboard_report();
+                }
+            }
+        }
+        break;
+        case KEY_FN34_LNEND:
+        {
+            uint32_t layer_win_on = layer_state_make(5);
+            if (layer_test(layer_win_on))
+            {
+                // Windows use HOME/END instead of ctrl+a/ctrl+e
+                if (record->event.pressed)
+                {
+                    register_code(KC_END);
+                }
+                else
+                {
+                    unregister_code(KC_END);
+                }
+            }
+            else 
+            {
+                uint8_t saved_mods = get_mods();
+                if (record->event.pressed)
+                {
+                    clear_mods();
+                    send_keyboard_report();
+                    // down mod
+                    add_weak_mods(MOD_BIT(KC_LCTL));
+                    send_keyboard_report();
+                    // down key
+                    register_code(KC_E);
+                    // up key
+                    unregister_code(KC_E);
+                    // up mod
+                    del_weak_mods(MOD_BIT(KC_LCTL));
+                    send_keyboard_report();
+
+                    set_mods(saved_mods);
+                    send_keyboard_report();
+                }
             }
         }
         break;
