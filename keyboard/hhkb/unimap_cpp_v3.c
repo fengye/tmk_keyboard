@@ -38,12 +38,7 @@ enum function_id {
 #define AC_TABF          ACTION_LAYER_TAP(2, KC_TAB) // FN2
 #define AC_ENT_          ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ENTER)
 
-// L2, mainly for navigation
-// #define AC_L2(KEY)       ACTION_MODS_KEY(MOD_LCTL, KC_##KEY)
-// #define AC_L2_LNST       ACTION_MODS_KEY(MOD_LCTL, KC_A)
-// #define AC_L2_LNED       ACTION_MODS_KEY(MOD_LCTL, KC_E)
-// #define AC_LNST          ACTION_MODS_KEY(MOD_LCTL, KC_A)
-// #define AC_LNED          ACTION_MODS_KEY(MOD_LCTL, KC_E)
+// L2, mainly for navigation, currently only line start/line end(which will be mapped to ctrl+a/ctrl+e on normal mode and home/end on windows mode)
 #define AC_LNST          ACTION_FUNCTION(KEY_FN34_LNSTART)
 #define AC_LNED          ACTION_FUNCTION(KEY_FN34_LNEND)
 
@@ -51,7 +46,6 @@ enum function_id {
 #define AC_L3(KEY)       ACTION_MODS_KEY(MOD_LSFT, KC_##KEY)
 
 // 1st row
-// #define AC_L3_GRAV       ACTION_KEY(KC_GRAVE)
 #define AC_L3_DBQT       ACTION_MODS_KEY(MOD_LSFT, KC_QUOTE)
 #define AC_L3_SGQT       ACTION_MACRO(L3_QUOTE)
 #define AC_L3_PIPE       ACTION_MODS_KEY(MOD_LSFT, KC_BSLASH)
@@ -61,7 +55,6 @@ enum function_id {
 #define AC_L3_RPRN       ACTION_MODS_KEY(MOD_LSFT, KC_0)
 #define AC_L3_LBKT       ACTION_MACRO(L3_LBRACKET)
 #define AC_L3_RBKT       ACTION_MACRO(L3_RBRACKET)
-// #define AC_L3_AT         ACTION_MODS_KEY(MOD_LSFT, KC_2)
 #define AC_L3_TIDL       ACTION_MODS_KEY(MOD_LSFT, KC_GRAVE)
 #define AC_L3_GRV        ACTION_MACRO(L3_GRAVE)
 // 2nd row
@@ -81,7 +74,6 @@ enum function_id {
 // L4, for remapped R Shift+X keycodes
 #define AC_L4(KEY)       ACTION_MODS_KEY(MOD_RSFT, KC_##KEY)
 // 1st row
-// #define AC_L4_GRAV       ACTION_KEY(KC_GRAVE)
 #define AC_L4_DBQT       ACTION_MODS_KEY(MOD_RSFT, KC_QUOTE)
 #define AC_L4_SGQT       ACTION_MACRO(L3_QUOTE)
 #define AC_L4_PIPE       ACTION_MODS_KEY(MOD_RSFT, KC_BSLASH)
@@ -91,7 +83,6 @@ enum function_id {
 #define AC_L4_RPRN       ACTION_MODS_KEY(MOD_RSFT, KC_0)
 #define AC_L4_LBKT       ACTION_MACRO(L3_LBRACKET)
 #define AC_L4_RBKT       ACTION_MACRO(L3_RBRACKET)
-// #define AC_L4_AT         ACTION_MODS_KEY(MOD_RSFT, KC_2)
 #define AC_L4_TIDL       ACTION_MODS_KEY(MOD_RSFT, KC_GRAVE)
 #define AC_L4_GRV        ACTION_MACRO(L3_GRAVE)
 // 2nd row
@@ -256,24 +247,22 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
                 }
             }
             else {
-                uint8_t saved_mods = get_mods();
                 if (record->event.pressed)
                 {
-                    clear_mods();
-                    send_keyboard_report();
                     // down mod
                     add_weak_mods(MOD_BIT(KC_LCTL));
                     send_keyboard_report();
                     // down key
                     register_code(KC_A);
+                }
+                else
+                {
                     // up key
                     unregister_code(KC_A);
                     // up mod
                     del_weak_mods(MOD_BIT(KC_LCTL));
                     send_keyboard_report();
 
-                    set_mods(saved_mods);
-                    send_keyboard_report();
                 }
             }
         }
@@ -295,24 +284,21 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
             }
             else 
             {
-                uint8_t saved_mods = get_mods();
                 if (record->event.pressed)
                 {
-                    clear_mods();
-                    send_keyboard_report();
                     // down mod
                     add_weak_mods(MOD_BIT(KC_LCTL));
                     send_keyboard_report();
                     // down key
                     register_code(KC_E);
+                }
+                else
+                {
                     // up key
                     unregister_code(KC_E);
                     // up mod
                     del_weak_mods(MOD_BIT(KC_LCTL));
-                    send_keyboard_report();
-
-                    set_mods(saved_mods);
-                    send_keyboard_report();
+                    send_keyboard_report();                    
                 }
             }
         }
