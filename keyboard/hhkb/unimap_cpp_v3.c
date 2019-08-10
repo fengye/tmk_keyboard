@@ -128,7 +128,7 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 
     // Remapped L Shift-X keys
     [3] = UNIMAP_HHKB(
-    L3_TIDL,L3(1), L3(2), L3_GRV,L3_PIPE,  L3(5),  L3(6),  L3(7),  L3(8),L3_DBQT,L3_SGQT,  L3_PLUS,L3_USCR,L3_LBKT,L3_RBKT,
+    L3_TIDL,L3(1), L3_DBQT,L3_GRV,L3_PIPE,  L3(5),  L3(6),  L3(7),  L3(8), L3_SGQT, L3(2), L3_USCR,L3_PLUS,L3_LBKT,L3_RBKT,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L3_LSBK,L3_RSBK,            DEL,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L3_HASH,  L3_DLLR,                L3_CCMT,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L3_QSTM,L3_CPTR,L3_BSLS,          TRNS,           TRNS,
@@ -136,7 +136,7 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 
     // Remapped R Shift-X keys
     [4] = UNIMAP_HHKB(
-    L4_TIDL,L4(1), L4(2), L4_GRV,L4_PIPE,  L4(5),  L4(6),  L4(7),  L4(8),L4_DBQT,L4_SGQT,  L4_PLUS,L4_USCR,L4_LBKT,L4_RBKT,
+    L4_TIDL,L4(1), L4_DBQT, L4_GRV,L4_PIPE, L4(5),  L4(6),  L4(7),  L4(8), L4_SGQT, L4(2), L4_USCR,L4_PLUS,L4_LBKT,L4_RBKT,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L4_LSBK,L4_RSBK,            DEL,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L4_HASH,  L4_DLLR,                L4_CCMT,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L4_QSTM,L4_CPTR,L4_BSLS,          TRNS,           TRNS,
