@@ -19,7 +19,6 @@ enum function_id {
     KEY_FN34_LNEND,
 };
 
-
 // L0, for remapped X keycodes
 // 1st row
 #define AC_L0_LPRN       ACTION_MODS_KEY(MOD_LSFT, KC_9)
@@ -33,9 +32,10 @@ enum function_id {
 #define AC_FN1           ACTION_LAYER_MOMENTARY(1)
 #define AC_FN3L          ACTION_FUNCTION(KEY_FN3_LSHIFT)
 #define AC_FN4R          ACTION_FUNCTION(KEY_FN4_RSHIFT)
-#define AC_FN5           ACTION_LAYER_TAP_TOGGLE(5)
+#define AC_FN5_TG        ACTION_LAYER_TOGGLE(5)
 
-#define AC_TABF          ACTION_LAYER_TAP(2, KC_TAB) // FN2
+#define AC_TABF          ACTION_LAYER_TAP(2, KC_TAB) // FN
+#define AC_ESCF          ACTION_LAYER_TAP(2, KC_ESC) // FN2
 #define AC_ENT_          ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ENTER)
 
 // L2, mainly for navigation, currently only line start/line end(which will be mapped to ctrl+a/ctrl+e on normal mode and home/end on windows mode)
@@ -104,23 +104,23 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] __attribute__ ((section ("
 const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 #endif
     [0] = UNIMAP_HHKB(
-    ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS, EQL,L0_LPRN,L0_RPRN,
-    TABF,Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   L0_LCBK,L0_RCBK,    BSPC,
+    ESCF,1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS, EQL,TRNS,     FN1,
+    TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   L0_LCBK,L0_RCBK,    BSPC,
     LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,L0_COLN,            ENT,
-    FN3L,Z,   X,   C,   V,   B,   N,   M,   COMM, DOT,SLSH,   FN4R,            FN1,
-         LALT,LGUI,               SPC,                TRNS, FN5),
+    FN3L,Z,   X,   C,   V,   B,   N,   M,   COMM, DOT,SLSH,   FN4R,            DEL,
+         LALT,LGUI,               SPC,                RGUI, RALT),
 
     // This is HHKB original Fn1 layer but removed navigation keys
     [1] = UNIMAP_HHKB(
-    PWR, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, INS, DEL,
+    PWR, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, INS, TRNS,
     CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,PSCR,SLCK,PAUS,TRNS,TRNS,     TRNS,
     TRNS,VOLD,VOLU,MUTE,TRNS,TRNS,PAST,PSLS,TRNS,TRNS,TRNS,TRNS,          PENT,
     TRNS,     TRNS,TRNS,TRNS,TRNS,TRNS,PPLS,PMNS,TRNS,TRNS,TRNS,     TRNS,TRNS,
-         TRNS,TRNS,               TRNS,                    TRNS,TRNS),
+         TRNS,TRNS,               FN5_TG,                  TRNS,TRNS),
 
-    // Tab navigation
+    // Esc navigation
     [2] = UNIMAP_HHKB(
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,L0_LPRN,L0_RPRN,L3_LBKT,L3_RBKT,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LNST,  UP,LNED,HOME,PGUP,TRNS,     TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LEFT,DOWN,RGHT, END,PGDN,          TRNS,
     TRNS,     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,
@@ -148,7 +148,7 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,          TRNS,
     TRNS,     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,
-         LGUI,LALT,                  TRNS,                 TRNS,TRNS),
+         LGUI,LALT,                 TRNS,                 RALT,RGUI),
 };
 
 
@@ -303,5 +303,6 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
             }
         }
         break;
+
     }
 }
