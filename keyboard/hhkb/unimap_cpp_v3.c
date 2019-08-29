@@ -6,7 +6,7 @@ enum macro_id {
     CPP_COMMENT,
     L3_QUOTE,
     L3_MINUS,
-    L3_LBRACKET,
+    // L3_LBRACKET,
     L3_RBRACKET,
     L3_BSLASH,
     L3_GRAVE,
@@ -21,13 +21,15 @@ enum function_id {
 
 // L0, for remapped X keycodes
 // 1st row
-#define AC_L0_LPRN       ACTION_MODS_KEY(MOD_LSFT, KC_9)
-#define AC_L0_RPRN       ACTION_MODS_KEY(MOD_LSFT, KC_0)
+// #define AC_L0_LPRN       ACTION_MODS_KEY(MOD_LSFT, KC_9)
+// #define AC_L0_RPRN       ACTION_MODS_KEY(MOD_LSFT, KC_0)
 // 2nd row
 #define AC_L0_RCBK       ACTION_MODS_KEY(MOD_LSFT, KC_RBRACKET)
 #define AC_L0_LCBK       ACTION_MODS_KEY(MOD_LSFT, KC_LBRACKET)
 // 3rd row
 #define AC_L0_COLN       ACTION_MODS_KEY(MOD_LSFT, KC_SCOLON)
+// 4th row
+#define AC_L0_DBQT       ACTION_MODS_KEY(MOD_LSFT, KC_QUOTE)
 
 #define AC_FN1           ACTION_LAYER_MOMENTARY(1)
 #define AC_FN3L          ACTION_FUNCTION(KEY_FN3_LSHIFT)
@@ -53,8 +55,8 @@ enum function_id {
 #define AC_L3_PLUS       ACTION_MODS_KEY(MOD_LSFT, KC_EQUAL)
 #define AC_L3_LPRN       ACTION_MODS_KEY(MOD_LSFT, KC_9)
 #define AC_L3_RPRN       ACTION_MODS_KEY(MOD_LSFT, KC_0)
-#define AC_L3_LBKT       ACTION_MACRO(L3_LBRACKET)
-#define AC_L3_RBKT       ACTION_MACRO(L3_RBRACKET)
+// #define AC_L3_LBRC       ACTION_MACRO(L3_LBRACKET)
+#define AC_L3_RBRC       ACTION_MACRO(L3_RBRACKET)
 #define AC_L3_TIDL       ACTION_MODS_KEY(MOD_LSFT, KC_GRAVE)
 #define AC_L3_GRV        ACTION_MACRO(L3_GRAVE)
 // 2nd row
@@ -81,8 +83,8 @@ enum function_id {
 #define AC_L4_PLUS       ACTION_MODS_KEY(MOD_RSFT, KC_EQUAL)
 #define AC_L4_LPRN       ACTION_MODS_KEY(MOD_RSFT, KC_9)
 #define AC_L4_RPRN       ACTION_MODS_KEY(MOD_RSFT, KC_0)
-#define AC_L4_LBKT       ACTION_MACRO(L3_LBRACKET)
-#define AC_L4_RBKT       ACTION_MACRO(L3_RBRACKET)
+// #define AC_L4_LBRC       ACTION_MACRO(L3_LBRACKET)
+#define AC_L4_RBRC       ACTION_MACRO(L3_RBRACKET)
 #define AC_L4_TIDL       ACTION_MODS_KEY(MOD_RSFT, KC_GRAVE)
 #define AC_L4_GRV        ACTION_MACRO(L3_GRAVE)
 // 2nd row
@@ -104,10 +106,10 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] __attribute__ ((section ("
 const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 #endif
     [0] = UNIMAP_HHKB(
-    ESCF,1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS, EQL,L3_LBKT,  FN1,
-    TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   L0_LCBK,L0_RCBK,    BSPC,
+    ESCF,1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS, EQL, LBRC,    FN1,
+    TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   L0_LCBK,L0_RCBK,   BSPC,
     LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,L0_COLN,            ENT,
-    FN3L,Z,   X,   C,   V,   B,   N,   M,   COMM, DOT,SLSH,   FN4R,        L4_SGQT,
+    FN3L,Z,   X,   C,   V,   B,   N,   M,   COMM, DOT,SLSH,   FN4R,        L0_DBQT,
          LALT,LGUI,               SPC,                RGUI, RALT),
 
     // This is HHKB original Fn1 layer but removed navigation keys
@@ -128,18 +130,18 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 
     // Remapped L Shift-X keys
     [3] = UNIMAP_HHKB(
-    TRNS,  L3(1), L3_DBQT,L3_GRV,L3_PIPE,  L3(5),  L3(6),  L3(7),  L3(8),L0_LPRN,L0_RPRN, L3_USCR,L3_PLUS,L3_RBKT,L3_TIDL,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L3_LSBK,L3_RSBK,           DEL,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L3_HASH,  L3_DLLR,               L3_CCMT,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L3_QSTM,L3_CPTR,L3_BSLS,          TRNS,         L3(2),
+    TRNS,  L3(1),  L3(2), L3_GRV,L3_PIPE,  L3(5),  L3(6),  L3(7),  L3(8),  L3(9),  L3(0),  L3_USCR,L3_PLUS,L3_RBRC,L3_TIDL,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L3_LSBK,L3_RSBK,            DEL,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L3_HASH,  L3_DLLR,                L3_CCMT,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L3_QSTM,L3_CPTR,L3_BSLS,          TRNS,        L3_SGQT,
              TRNS,  TRNS,                  L3_USCR,               TRNS,  TRNS),
 
     // Remapped R Shift-X keys
     [4] = UNIMAP_HHKB(
-    TRNS,  L4(1), L4_DBQT, L4_GRV,L4_PIPE, L4(5),  L4(6),  L4(7),  L4(8), L0_LPRN,L0_RPRN, L4_USCR,L4_PLUS,L4_RBKT,L4_TIDL,
+    TRNS,  L4(1),  L4(2), L4_GRV,L4_PIPE, L4(5),  L4(6),  L4(7),  L4(8),  L4(9),  L4(0),  L4_USCR,L4_PLUS,L4_RBRC,L4_TIDL,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L4_LSBK,L4_RSBK,            DEL,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L4_HASH,  L4_DLLR,                L4_CCMT,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L4_QSTM,L4_CPTR,L4_BSLS,          TRNS,          L4(2),
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L4_QSTM,L4_CPTR,L4_BSLS,          TRNS,        L4_SGQT,
              TRNS,  TRNS,                  L4_USCR,               TRNS,  TRNS),
 
     // Swap left (GUI/WIN)<->(ALT/OPTION)
@@ -175,10 +177,10 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
                     MACRO( I(0), SM(), CM(), T(MINUS), RM(), END ) : 
                     MACRO_NONE );
 
-        case L3_LBRACKET:
-            return (record->event.pressed ? 
-                    MACRO( I(0), SM(), CM(), T(LBRACKET), RM(), END ) : 
-                    MACRO_NONE );
+        // case L3_LBRACKET:
+        //     return (record->event.pressed ? 
+        //             MACRO( I(0), SM(), CM(), T(LBRACKET), RM(), END ) : 
+        //             MACRO_NONE );
 
         case L3_RBRACKET:
             return (record->event.pressed ? 
