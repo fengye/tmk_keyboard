@@ -34,9 +34,9 @@ enum function_id {
 #define AC_FN4R          ACTION_FUNCTION(KEY_FN4_RSHIFT)
 #define AC_FN5_TG        ACTION_LAYER_TOGGLE(5)
 
-#define AC_TABF          ACTION_LAYER_TAP(2, KC_TAB) // FN
+//#define AC_TABF          ACTION_LAYER_TAP(2, KC_TAB) // FN
 #define AC_ESCF          ACTION_LAYER_TAP(2, KC_ESC) // FN2
-#define AC_ENT_          ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ENTER)
+// #define AC_ENT_          ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ENTER)
 
 // L2, mainly for navigation, currently only line start/line end(which will be mapped to ctrl+a/ctrl+e on normal mode and home/end on windows mode)
 #define AC_LNST          ACTION_FUNCTION(KEY_FN34_LNSTART)
@@ -104,10 +104,10 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] __attribute__ ((section ("
 const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 #endif
     [0] = UNIMAP_HHKB(
-    ESCF,1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS, EQL,TRNS,     FN1,
+    ESCF,1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS, EQL,L3_LBKT,  FN1,
     TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   L0_LCBK,L0_RCBK,    BSPC,
     LCTL,A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,L0_COLN,            ENT,
-    FN3L,Z,   X,   C,   V,   B,   N,   M,   COMM, DOT,SLSH,   FN4R,            DEL,
+    FN3L,Z,   X,   C,   V,   B,   N,   M,   COMM, DOT,SLSH,   FN4R,        L4_SGQT,
          LALT,LGUI,               SPC,                RGUI, RALT),
 
     // This is HHKB original Fn1 layer but removed navigation keys
@@ -120,7 +120,7 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 
     // Esc navigation
     [2] = UNIMAP_HHKB(
-    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,L0_LPRN,L0_RPRN,L3_LBKT,L3_RBKT,TRNS,TRNS,
+    TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LNST,  UP,LNED,HOME,PGUP,TRNS,     TRNS,
     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,LEFT,DOWN,RGHT, END,PGDN,          TRNS,
     TRNS,     TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,     TRNS,TRNS,
@@ -128,18 +128,18 @@ const action_t actionmaps[][UNIMAP_ROWS][UNIMAP_COLS] PROGMEM = {
 
     // Remapped L Shift-X keys
     [3] = UNIMAP_HHKB(
-    L3_TIDL,L3(1), L3_DBQT,L3_GRV,L3_PIPE,  L3(5),  L3(6),  L3(7),  L3(8), L3_SGQT, L3(2), L3_USCR,L3_PLUS,L3_LBKT,L3_RBKT,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L3_LSBK,L3_RSBK,            DEL,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L3_HASH,  L3_DLLR,                L3_CCMT,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L3_QSTM,L3_CPTR,L3_BSLS,          TRNS,           TRNS,
+    TRNS,  L3(1), L3_DBQT,L3_GRV,L3_PIPE,  L3(5),  L3(6),  L3(7),  L3(8),L0_LPRN,L0_RPRN, L3_USCR,L3_PLUS,L3_RBKT,L3_TIDL,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L3_LSBK,L3_RSBK,           DEL,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L3_HASH,  L3_DLLR,               L3_CCMT,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L3_QSTM,L3_CPTR,L3_BSLS,          TRNS,         L3(2),
              TRNS,  TRNS,                  L3_USCR,               TRNS,  TRNS),
 
     // Remapped R Shift-X keys
     [4] = UNIMAP_HHKB(
-    L4_TIDL,L4(1), L4_DBQT, L4_GRV,L4_PIPE, L4(5),  L4(6),  L4(7),  L4(8), L4_SGQT, L4(2), L4_USCR,L4_PLUS,L4_LBKT,L4_RBKT,
+    TRNS,  L4(1), L4_DBQT, L4_GRV,L4_PIPE, L4(5),  L4(6),  L4(7),  L4(8), L0_LPRN,L0_RPRN, L4_USCR,L4_PLUS,L4_RBKT,L4_TIDL,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,  L4_LSBK,L4_RSBK,            DEL,
     TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,L4_HASH,  L4_DLLR,                L4_CCMT,
-    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L4_QSTM,L4_CPTR,L4_BSLS,          TRNS,           TRNS,
+    TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   TRNS,   L4_QSTM,L4_CPTR,L4_BSLS,          TRNS,          L4(2),
              TRNS,  TRNS,                  L4_USCR,               TRNS,  TRNS),
 
     // Swap left (GUI/WIN)<->(ALT/OPTION)
